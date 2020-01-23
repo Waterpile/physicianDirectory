@@ -17,16 +17,24 @@ export default class Main extends React.Component {
           const CategoryResult = ({ match }) => {
                return (
                     <CategoryPageResults
-                         category={this.state.categories.filter(cat => cat.id === +match.params.catId)[0]}
-                         physicians={this.state.physicians.filter(physician => physician.catId === +match.params.catId)}
+                         specialty={this.props.specialties.filter(specialty => specialty.SpecialtyId === +match.params.specialtyId)[0]}
+                         physicians={this.props.physicians.filter(physician => {
+                              if (physician.Specialty1 === +match.params.specialtyId || physician.Specialty2 === +match.params.specialtyId || physician.Specialty3 === +match.params.specialtyId || physician.SpecialtyThree === +match.params.specialtyId || physician.Specialty4 === +match.params.specialtyId) {
+                                   return true;
+                              } else {
+                                   return false;
+                              }
+                         }
+                         )}
+
                     />
                );
           }
           return (
                <>
                     <Switch>
-                         <Route exact path='/' render={() => <Home categories={this.state.categories} />} />
-                         <Route path={`/specialty/:catId`} component={CategoryResult} />} />
+                         <Route exact path='/' render={() => <Home specialties={this.props.specialties} />} />
+                         <Route path={`/specialty/:specialtyId`} component={CategoryResult} />} />
                          <Redirect to='/' />
                     </Switch>
                </>

@@ -2,16 +2,16 @@ import React from 'react';
 import CategoryPageResults from './CategoryPageResultsComponent';
 import { withRouter } from 'react-router-dom';
 
-const CatDropdown = ({ categories }) => {
+const CatDropdown = ({ specialties }) => {
      return (
-          categories.map(cat => {
+          specialties.map(specialty => {
                return (
-                    <option id={cat.id} key={cat.id}>{cat.name}</option>
+                    <option id={specialty.SpecialtyId} key={specialty.SpecialtyId}>{specialty.Name} {specialty.SpecialtyId}</option>
                );
           })
+
      );
 }
-
 
 class Home extends React.Component {
      constructor(props) {
@@ -34,7 +34,7 @@ class Home extends React.Component {
                <>
                     <select onChange={this.handleChange}>
                          <option>--</option>
-                         <CatDropdown categories={this.props.categories} />
+                         <CatDropdown specialties={this.props.specialties} />
                     </select>
                </>
           );
