@@ -5,7 +5,7 @@ const CategoryPageResults = ({ specialty, physicians }) => {
      return (
           <>
                <div>
-                    <h1>{specialty.Name}</h1>
+                    <h1>{specialty.map(spec => spec.Name)}</h1>
                     <ul>
                          {physicians.map(physician => <li key={`physician${physician.PhysicianId}`}>{physician.FirstName} {physician.LastName}, {physician.Credentials}</li>)}
                     </ul>
